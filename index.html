@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear link de WhatsApp con mensaje y QR personalizado gratis</title>
+  <meta name="description" content="Generador de enlace WhatsApp con mensaje: crea tu link wa.me y un WhatsApp QR personalizado con tu logo y colores. Gratis, sin registro y 100 % privado.">
+  <!-- TODO: cambia TU-USUARIO/TU-REPOSITORIO por la dirección real de tu web -->
+  <link rel="canonical" href="https://carlos-albornoz.github.io/generador-qr-whatsapp/">
+  <meta name="theme-color" content="#0b6b5a">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="EnlaceChat">
+  <meta property="og:title" content="Crear link de WhatsApp con mensaje y QR personalizado">
+  <meta property="og:description" content="Crea tu enlace wa.me con mensaje predeterminado y descarga un código QR con tus colores y tu logo. Gratis y sin registro.">
+  <meta property="og:url" content="https://carlos-albornoz.github.io/generador-qr-whatsapp/">
+  <meta property="og:image" content="https://carlos-albornoz.github.io/generador-qr-whatsapp/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg?v=20261001" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261001">
+
+  <!-- TODO (al activar AdSense): pega aquí el código de tu banner de consentimiento de cookies (CMP certificado por Google). -->
+  <!-- TODO (al activar AdSense): pega aquí el script principal de AdSense que te da Google. -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "EnlaceChat — Generador de enlace WhatsApp con mensaje y QR",
+    "url": "https://carlos-albornoz.github.io/generador-qr-whatsapp/",
+    "description": "Herramienta gratuita para crear un link de WhatsApp con mensaje predeterminado y generar un WhatsApp QR personalizado con colores y logo, descargable en PNG y SVG.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Cualquiera (funciona en el navegador)",
+    "inLanguage": "es",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Cómo crear un link de WhatsApp con mensaje?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Elige tu país, escribe tu número sin el prefijo y redacta el mensaje que verán tus clientes. Pulsa «Generar enlace y QR» y obtendrás un enlace wa.me listo para copiar, con el texto ya incluido." } },
+      { "@type": "Question", "name": "¿Es gratis este generador de enlace de WhatsApp con mensaje?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Puedes crear todos los enlaces y códigos QR que quieras, sin registro y sin límites. Los enlaces wa.me no caducan nunca." } },
+      { "@type": "Question", "name": "¿El código QR de WhatsApp caduca?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. El QR contiene directamente tu enlace wa.me, sin redirecciones intermedias, así que funcionará mientras tu número siga activo en WhatsApp." } },
+      { "@type": "Question", "name": "¿Puedo poner mi logo en el WhatsApp QR personalizado?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Puedes añadir un icono de chat o subir tu propio logo (PNG, JPG o SVG). La herramienta aumenta automáticamente la corrección de errores del código para que siga escaneándose bien." } },
+      { "@type": "Question", "name": "¿Sirve para WhatsApp Business?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Los enlaces wa.me funcionan igual con cuentas personales y con WhatsApp Business: el chat se abre con tu número y el mensaje ya escrito." } },
+      { "@type": "Question", "name": "¿Mis datos se guardan en algún servidor?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. El enlace y el código QR se generan en tu propio navegador. Tu número, tu mensaje y tu logo nunca se envían ni se guardan en ningún servidor." } },
+      { "@type": "Question", "name": "¿Qué formato de QR debo descargar, PNG o SVG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PNG es ideal para redes sociales, webs y documentos. SVG es un formato vectorial que se puede ampliar sin perder calidad, perfecto para imprenta, tarjetas de presentación, carteles y vinilos." } },
+      { "@type": "Question", "name": "¿Por qué mi QR no se escanea?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Las causas más habituales son poco contraste entre colores, un color frontal más claro que el fondo, un tamaño de impresión demasiado pequeño o un mensaje muy largo. Usa un color oscuro sobre fondo claro e imprímelo al menos a 2 × 2 cm." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#herramienta">Saltar a la herramienta</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__in">
+      <a class="logo" href="./" aria-label="EnlaceChat, inicio">
+        <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#0b6b5a"/>
+          <path d="M10 13.5A4.5 4.5 0 0 1 14.5 9h11A4.5 4.5 0 0 1 30 13.5v8a4.5 4.5 0 0 1-4.5 4.5H18l-6 5v-5.4A4.5 4.5 0 0 1 10 21.5z" fill="#2fd27a"/>
+          <path d="M17.2 19.6l5.6-3.2M16 17.5a2 2 0 1 1 0 .1M24 21.5a2 2 0 1 1 0 .1M24 13.5a2 2 0 1 1 0 .1" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span>Enlace<b>Chat</b></span>
+      </a>
+      <nav class="site-nav" aria-label="Secciones">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#casos-de-uso">Casos de uso</a>
+        <a href="#preguntas-frecuentes">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <h1>Crear link de WhatsApp con mensaje y código QR personalizado</h1>
+      <p class="hero__sub">Generador de enlace WhatsApp con mensaje predeterminado: consigue tu link <strong>wa.me</strong> y un QR con tus colores y tu logo en segundos.</p>
+      <ul class="pills" aria-label="Ventajas">
+        <li>✓ Gratis</li><li>✓ Sin registro</li><li>✓ 100 % privado</li><li>✓ PNG y SVG</li>
+      </ul>
+    </section>
+
+    <!-- ===== ANUNCIO 1 · Banner horizontal superior ===== -->
+    <div class="wrap">
+      <div class="ad-slot ad-slot--leader" role="complementary" aria-label="Espacio publicitario">
+        <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (banner horizontal: 728×90 en ordenador, 320×100 en móvil) -->
+        <span class="ad-slot__label">ANUNCIO</span>
+      </div>
+    </div>
+
+    <section id="herramienta" class="tool wrap" aria-label="Generador de enlaces de WhatsApp">
+      <noscript><p class="noscript">Esta herramienta necesita JavaScript activado para generar tu enlace y tu código QR.</p></noscript>
+
+      <div class="tool-grid">
+        <!-- ===== Formulario ===== -->
+        <div class="card form-card" id="formCard">
+          <h2 class="card__title"><span class="step-n">1</span> Tus datos</h2>
+
+          <label class="field-label" for="phone">Número de WhatsApp</label>
+          <div class="phone-row">
+            <div class="cc" id="cc">
+              <button type="button" class="cc__btn" id="ccBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="País y prefijo">
+                <span class="cc__flag" id="ccFlag">🇪🇸</span>
+                <span class="cc__dial" id="ccDial">+34</span>
+                <svg class="cc__chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </button>
+              <div class="cc__panel" id="ccPanel" hidden>
+                <input type="search" class="cc__search" id="ccSearch" placeholder="Buscar país o prefijo…" autocomplete="off" aria-label="Buscar país">
+                <ul class="cc__list" id="ccList" role="listbox" aria-label="Países"></ul>
+              </div>
+            </div>
+            <input id="phone" class="input phone-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="600 123 456" aria-describedby="phoneHint">
+          </div>
+          <p class="hint" id="phoneHint">Escribe tu número sin el prefijo del país. Si pegas uno con «+», detectamos el país solos.</p>
+
+          <div class="msg-head">
+            <label class="field-label" for="message">Mensaje predeterminado <span class="opt">(opcional)</span></label>
+            <div class="fmt" role="toolbar" aria-label="Formato del texto">
+              <button type="button" data-wrap="*" title="Negrita"><b>N</b></button>
+              <button type="button" data-wrap="_" title="Cursiva"><i>C</i></button>
+              <button type="button" data-wrap="~" title="Tachado"><s>T</s></button>
+              <button type="button" data-wrap="```" title="Monoespaciado"><code>{}</code></button>
+            </div>
+          </div>
+          <textarea id="message" class="input textarea" rows="4" maxlength="1000" placeholder="Hola 👋 Vengo de vuestra web y me gustaría recibir más información."></textarea>
+          <div class="msg-foot">
+            <div class="chips" aria-label="Plantillas rápidas">
+              <button type="button" class="chip" data-tpl="Hola 👋 Me gustaría recibir más información sobre sus servicios.">Información</button>
+              <button type="button" class="chip" data-tpl="¡Hola! Quiero reservar una mesa para ___ personas el día ___ a las ___.">Reserva</button>
+              <button type="button" class="chip" data-tpl="Hola, me interesa este producto que vi en Instagram: ___ ¿Sigue disponible?">Pedido</button>
+              <button type="button" class="chip" data-tpl="Hola, me gustaría solicitar un presupuesto para automatizar ___ en mi empresa.">Presupuesto</button>
+            </div>
+            <span class="counter" id="counter">0 / 1000</span>
+          </div>
+
+          <p class="error" id="formError" role="alert" hidden></p>
+          <button type="button" class="btn btn--primary btn--xl" id="generateBtn">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            Generar enlace y QR
+          </button>
+          <p class="privacy">🔒 100 % privado: tu número, tu mensaje y tu logo se procesan en tu dispositivo y no se envían a ningún servidor.</p>
+        </div>
+
+        <!-- ===== Resultado: enlace + QR ===== -->
+        <div class="card result-card" id="resultCard" hidden>
+          <h2 class="card__title"><span class="step-n">2</span> Tu enlace de WhatsApp</h2>
+          <div class="link-box">
+            <input id="linkOut" class="input link-out" type="text" readonly aria-label="Enlace generado">
+            <button type="button" class="btn btn--primary" id="copyBtn">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              <span id="copyLabel">Copiar enlace</span>
+            </button>
+          </div>
+          <p class="link-meta"><a id="testLink" href="#" target="_blank" rel="noopener">Probar enlace ↗</a> · <span id="linkLen"></span></p>
+
+          <h2 class="card__title card__title--sub"><span class="step-n">3</span> Personaliza tu WhatsApp QR</h2>
+          <div class="qr-zone">
+            <div class="qr-stage">
+              <div class="qr-canvas" id="qrBox" aria-label="Código QR generado" role="img"></div>
+              <p class="qr-info" id="qrInfo"></p>
+            </div>
+            <div class="qr-controls">
+              <div class="ctrl-row">
+                <label class="color-field">
+                  <span>Color frontal</span>
+                  <span class="color-pick"><input type="color" id="fgColor" value="#0b3d33"><input type="text" class="hex" id="fgHex" value="#0b3d33" maxlength="7" aria-label="Color frontal en hexadecimal"></span>
+                </label>
+                <label class="color-field">
+                  <span>Color de fondo</span>
+                  <span class="color-pick"><input type="color" id="bgColor" value="#ffffff"><input type="text" class="hex" id="bgHex" value="#ffffff" maxlength="7" aria-label="Color de fondo en hexadecimal"></span>
+                </label>
+              </div>
+              <div class="swatches" aria-label="Combinaciones rápidas">
+                <button type="button" class="sw" data-fg="#0b3d33" data-bg="#ffffff" style="--a:#0b3d33;--b:#ffffff" aria-label="Verde oscuro sobre blanco"></button>
+                <button type="button" class="sw" data-fg="#128c5e" data-bg="#ffffff" style="--a:#128c5e;--b:#ffffff" aria-label="Verde sobre blanco"></button>
+                <button type="button" class="sw" data-fg="#111111" data-bg="#ffffff" style="--a:#111111;--b:#ffffff" aria-label="Negro sobre blanco"></button>
+                <button type="button" class="sw" data-fg="#0b3d33" data-bg="#dcf8c6" style="--a:#0b3d33;--b:#dcf8c6" aria-label="Verde oscuro sobre verde claro"></button>
+                <button type="button" class="sw" data-fg="#1f2a44" data-bg="#f3f4f6" style="--a:#1f2a44;--b:#f3f4f6" aria-label="Azul marino sobre gris"></button>
+              </div>
+
+              <fieldset class="seg-field">
+                <legend>Forma de los puntos</legend>
+                <div class="seg" id="styleSeg">
+                  <button type="button" data-val="square" aria-pressed="false"><span class="g">▪ </span>Cuadrados</button>
+                  <button type="button" data-val="rounded" aria-pressed="true"><span class="g">◆ </span>Redondeados</button>
+                  <button type="button" data-val="dots" aria-pressed="false"><span class="g">● </span>Puntos</button>
+                </div>
+              </fieldset>
+
+              <fieldset class="seg-field">
+                <legend>Imagen central</legend>
+                <div class="seg" id="logoSeg">
+                  <button type="button" data-val="none" aria-pressed="false">Ninguna</button>
+                  <button type="button" data-val="chat" aria-pressed="true">Icono de chat</button>
+                  <button type="button" data-val="custom" aria-pressed="false">Mi logo…</button>
+                </div>
+                <input type="file" id="logoFile" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden>
+                <p class="hint" id="logoHint">Con imagen central activamos la máxima corrección de errores para que el código siga leyéndose.</p>
+              </fieldset>
+
+              <p class="warn" id="contrastWarn" role="status" hidden></p>
+
+              <div class="dl-row">
+                <label class="size-field">
+                  <span>Tamaño PNG</span>
+                  <select id="pngSize" class="input select">
+                    <option value="512">512 px</option>
+                    <option value="1024" selected>1024 px</option>
+                    <option value="2048">2048 px (alta)</option>
+                    <option value="4096">4096 px (imprenta)</option>
+                  </select>
+                </label>
+                <button type="button" class="btn btn--primary" id="dlPng">⬇ Descargar PNG</button>
+                <button type="button" class="btn btn--ghost" id="dlSvg">⬇ Descargar SVG</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Lateral: vista previa + anuncio cuadrado ===== -->
+        <aside class="side" aria-label="Vista previa">
+          <div class="phone" aria-label="Vista previa del chat">
+            <div class="phone__top">
+              <svg class="phone__back" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              <span class="phone__avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="9" r="4" fill="#fff"/><path d="M4 21a8 8 0 0 1 16 0" fill="#fff"/></svg>
+              </span>
+              <span class="phone__who"><b id="pvName">+34 600 123 456</b><small>en línea</small></span>
+              <span class="phone__icons" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="19" height="19"><rect x="3" y="7" width="12" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 11l6-3v8l-6-3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </span>
+            </div>
+            <div class="phone__chat" id="pvChat">
+              <span class="day-pill">Hoy</span>
+              <div class="sys-note">Los mensajes y llamadas están protegidos. Vista previa simulada.</div>
+              <div class="bubble" id="pvBubble">
+                <span class="bubble__text" id="pvText"></span>
+                <span class="bubble__meta"><span id="pvTime">10:24</span>
+                  <svg viewBox="0 0 18 11" width="16" height="10" aria-hidden="true"><path d="M1 6l3 3 6-7M7 8l1 1 6-7" fill="none" stroke="#3aa9e0" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+              </div>
+              <p class="empty-note" id="pvEmpty" hidden>Sin mensaje: el chat se abrirá vacío y tu cliente escribirá lo que quiera.</p>
+            </div>
+            <div class="phone__bar">
+              <span class="phone__input">☺ <span>Mensaje</span></span>
+              <span class="phone__send" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 12l16-8-6 16-2-6z" fill="#fff"/></svg></span>
+            </div>
+          </div>
+          <p class="side__cap">Así verá tu cliente el mensaje: le aparecerá ya escrito y solo tendrá que pulsar enviar.</p>
+
+          <!-- ===== ANUNCIO 2 · Cuadrado lateral (debajo de la vista previa en móvil) ===== -->
+          <div class="ad-slot ad-slot--square" role="complementary" aria-label="Espacio publicitario">
+            <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (anuncio cuadrado / rectángulo mediano 300×250) -->
+            <span class="ad-slot__label">ANUNCIO</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== Contenido SEO ===== -->
+    <section id="como-funciona" class="section wrap">
+      <h2 class="section__title">Cómo crear un link de WhatsApp en 3 simples pasos</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><rect x="6" y="2" width="12" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>1. Introduce tu número</h3>
+          <p>Elige tu país en el desplegable de banderas y escribe tu número de WhatsApp. El prefijo internacional se añade solo, sin espacios ni símbolos.</p>
+        </li>
+        <li class="step">
+          <span class="step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <h3>2. Escribe el mensaje</h3>
+          <p>Redacta el texto con el que tus clientes iniciarán la conversación. La vista previa te enseña cómo quedará en el chat, con negritas y emojis incluidos.</p>
+        </li>
+        <li class="step">
+          <span class="step__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2z" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3>3. Copia el enlace y descarga tu QR</h3>
+          <p>Pulsa generar: copia tu enlace wa.me con un clic, personaliza el código QR con tus colores y tu logo, y descárgalo en PNG o SVG de alta calidad.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="casos-de-uso" class="section wrap">
+      <h2 class="section__title">Casos de uso del enlace de WhatsApp con mensaje</h2>
+      <p class="section__lead">Un link de WhatsApp con mensaje predeterminado elimina fricción: el cliente no tiene que guardar tu número ni pensar qué escribir. Así lo aprovechan distintos negocios:</p>
+      <div class="cases">
+        <article class="case">
+          <span class="case__icon" aria-hidden="true">⚙️</span>
+          <h3>Agencias de tecnología y automatización</h3>
+          <p>Coloca el enlace en tu web, en tus anuncios y en tus propuestas comerciales con un mensaje como «Quiero automatizar mi atención al cliente». El texto predefinido te dice de qué campaña llega cada contacto y permite que tus chatbots o flujos de CRM clasifiquen el lead al instante.</p>
+        </article>
+        <article class="case">
+          <span class="case__icon" aria-hidden="true">🍽️</span>
+          <h3>Restaurantes y bares</h3>
+          <p>Imprime un WhatsApp QR personalizado en mesas, cartas y escaparates para recibir reservas y pedidos para llevar sin llamadas. Con un mensaje tipo «Quiero reservar una mesa para ___ personas» las peticiones llegan ordenadas y con los datos que necesitas.</p>
+        </article>
+        <article class="case">
+          <span class="case__icon" aria-hidden="true">🛍️</span>
+          <h3>Tiendas de Instagram</h3>
+          <p>Pon el enlace en tu bio, en los stories con el sticker de enlace y en las publicaciones de producto. Un mensaje como «Me interesa este producto, ¿sigue disponible?» convierte seguidores en conversaciones de venta en un solo toque.</p>
+        </article>
+        <article class="case">
+          <span class="case__icon" aria-hidden="true">💼</span>
+          <h3>Tarjetas de presentación</h3>
+          <p>Añade el QR en formato SVG a tu tarjeta de visita, folletos o firma impresa: al escanearlo se abre un chat contigo con un saludo ya escrito. Para tarjetas pequeñas, usa un mensaje corto y el código seguirá siendo nítido y fácil de leer.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap prose">
+      <h2 class="section__title">Qué es un enlace wa.me y por qué usar un generador</h2>
+      <p>WhatsApp ofrece un formato oficial de enlace corto, <strong>wa.me</strong>, que abre directamente un chat con un número concreto. La estructura es sencilla: <code>https://wa.me/</code> seguido del número en formato internacional (prefijo del país y número, solo cifras) y, si quieres, <code>?text=</code> con el mensaje codificado para que funcione en una URL.</p>
+      <p>Hacerlo a mano da errores fáciles: dejar el «+» o los ceros iniciales, olvidar el prefijo, o escribir tildes, espacios y emojis sin codificar. Este <strong>generador de enlace WhatsApp con mensaje</strong> se encarga de todo: limpia el número, codifica el texto correctamente y te enseña el resultado antes de compartirlo.</p>
+      <h3>Consejos para que tu WhatsApp QR personalizado siempre escanee</h3>
+      <p>Usa siempre un color frontal oscuro sobre un fondo claro: los lectores de QR buscan contraste, y un código con colores invertidos o pastel puede fallar en móviles antiguos. Si añades tu logo, la herramienta activa la máxima corrección de errores automáticamente. Para impresión, descarga el SVG (vectorial, no pierde calidad) y no lo imprimas por debajo de 2 × 2 cm; si el mensaje es largo, el código tendrá más puntos y conviene imprimirlo más grande. Prueba siempre el código con tu móvil antes de mandarlo a imprenta.</p>
+      <h3>Formato de texto en el mensaje</h3>
+      <p>WhatsApp admite formato básico y lo respeta en los mensajes predeterminados: <code>*negrita*</code>, <code>_cursiva_</code>, <code>~tachado~</code> y <code>```monoespaciado```</code>. Usa los botones de formato del editor y verás el resultado en la vista previa al momento.</p>
+    </section>
+
+    <section id="preguntas-frecuentes" class="section wrap">
+      <h2 class="section__title">Preguntas frecuentes</h2>
+      <div class="faq">
+        <details>
+          <summary>¿Cómo crear un link de WhatsApp con mensaje?</summary>
+          <p>Elige tu país, escribe tu número sin el prefijo y redacta el mensaje que verán tus clientes. Pulsa «Generar enlace y QR» y obtendrás un enlace wa.me listo para copiar, con el texto ya incluido.</p>
+        </details>
+        <details>
+          <summary>¿Es gratis este generador de enlace de WhatsApp con mensaje?</summary>
+          <p>Sí. Puedes crear todos los enlaces y códigos QR que quieras, sin registro y sin límites. Los enlaces wa.me no caducan nunca.</p>
+        </details>
+        <details>
+          <summary>¿El código QR de WhatsApp caduca?</summary>
+          <p>No. El QR contiene directamente tu enlace wa.me, sin redirecciones intermedias, así que funcionará mientras tu número siga activo en WhatsApp.</p>
+        </details>
+        <details>
+          <summary>¿Puedo poner mi logo en el WhatsApp QR personalizado?</summary>
+          <p>Sí. Puedes añadir un icono de chat o subir tu propio logo (PNG, JPG o SVG). La herramienta aumenta automáticamente la corrección de errores del código para que siga escaneándose bien.</p>
+        </details>
+        <details>
+          <summary>¿Sirve para WhatsApp Business?</summary>
+          <p>Sí. Los enlaces wa.me funcionan igual con cuentas personales y con WhatsApp Business: el chat se abre con tu número y el mensaje ya escrito.</p>
+        </details>
+        <details>
+          <summary>¿Mis datos se guardan en algún servidor?</summary>
+          <p>No. El enlace y el código QR se generan en tu propio navegador. Tu número, tu mensaje y tu logo nunca se envían ni se guardan en ningún servidor.</p>
+        </details>
+        <details>
+          <summary>¿Qué formato de QR debo descargar, PNG o SVG?</summary>
+          <p>PNG es ideal para redes sociales, webs y documentos. SVG es un formato vectorial que se puede ampliar sin perder calidad, perfecto para imprenta, tarjetas de presentación, carteles y vinilos.</p>
+        </details>
+        <details>
+          <summary>¿Por qué mi QR no se escanea?</summary>
+          <p>Las causas más habituales son poco contraste entre colores, un color frontal más claro que el fondo, un tamaño de impresión demasiado pequeño o un mensaje muy largo. Usa un color oscuro sobre fondo claro e imprímelo al menos a 2 × 2 cm.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== ANUNCIO 4 · Banner horizontal inferior ===== -->
+    <div class="wrap">
+      <div class="ad-slot ad-slot--leader ad-slot--bottom" role="complementary" aria-label="Espacio publicitario">
+        <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (banner horizontal: 728×90 en ordenador, 320×100 en móvil) -->
+        <span class="ad-slot__label">ANUNCIO</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__in">
+      <p><b>EnlaceChat</b> · Crear link de WhatsApp con mensaje y WhatsApp QR personalizado, gratis.</p>
+      <nav aria-label="Legal"><a href="privacidad.html">Privacidad y cookies</a> · <a href="aviso-legal.html">Aviso legal</a></nav>
+      <p class="tm">WhatsApp es una marca registrada de Meta Platforms, Inc. EnlaceChat es una herramienta independiente y no está afiliada, patrocinada ni respaldada por WhatsApp ni por Meta.</p>
+    </div>
+  </footer>
+
+  <!-- ===== ANUNCIO 3 · Pop-up intermedio (tras copiar o descargar) ===== -->
+  <dialog class="interstitial" id="adDialog" aria-labelledby="adDialogTitle">
+    <button type="button" class="interstitial__x" id="adClose" aria-label="Cerrar">×</button>
+    <p class="interstitial__title" id="adDialogTitle">✅ <span id="adDialogMsg">¡Listo!</span></p>
+    <div class="ad-slot ad-slot--square ad-slot--modal">
+      <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (anuncio 300×250 para la ventana intermedia) -->
+      <span class="ad-slot__label">ANUNCIO</span>
+    </div>
+    <button type="button" class="btn btn--primary btn--block" id="adContinue">Cerrar y continuar</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script defer src="lib/manifest.js?v=20261001"></script>
+  <script defer src="lib/countries.js?v=20261001"></script>
+  <script defer src="lib/qr-encoder.js?v=20261001"></script>
+  <script defer src="lib/qr-render.js?v=20261001"></script>
+  <script defer src="main.js?v=20261001"></script>
+</body>
+</html>
