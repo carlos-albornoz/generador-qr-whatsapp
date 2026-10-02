@@ -7,14 +7,17 @@ sin base de datos y sin servicios de pago. Lista para GitHub Pages o cualquier h
 
 | Archivo | Para qué sirve |
 |---|---|
-| `index.html` | La página principal (herramienta + contenido SEO + FAQ) |
+| `index.html` | Página principal en **español** (herramienta + contenido SEO + FAQ) |
+| `en.html` | La misma página en **inglés** |
+| `lib/i18n.js` | **Diccionario** con todos los textos en los dos idiomas + el cambio de idioma |
+| `tools/generar-idiomas.py` | Regenera `index.html` y `en.html` si cambias textos del diccionario |
 | `styles.css` | Todo el diseño |
 | `main.js` | El funcionamiento de la herramienta |
 | `lib/qr-encoder.js` | Motor propio de códigos QR (sin dependencias externas) |
 | `lib/qr-render.js` | Dibuja el QR con estilos, colores y logo (PNG y SVG) |
 | `lib/countries.js` | Países, banderas y prefijos |
 | `lib/manifest.js` | **Tus ajustes**: nombre, dirección de la web, país por defecto |
-| `privacidad.html`, `aviso-legal.html` | Páginas legales (AdSense las exige) — complétalas |
+| `privacidad.html`, `aviso-legal.html`, `privacy.html`, `legal-notice.html` | Páginas legales en los dos idiomas (AdSense las exige) — complétalas |
 | `assets/` | Favicon e imagen para redes sociales |
 | `robots.txt`, `sitemap.xml` | Para Google |
 | `.htaccess` | Ajustes para hosting tipo Hostinger (GitHub Pages lo ignora, no molesta) |
@@ -23,9 +26,21 @@ sin base de datos y sin servicios de pago. Lista para GitHub Pages o cualquier h
 
 ## Antes de publicar: 1 cambio obligatorio
 
-Busca y reemplaza `https://carlos-albornoz.github.io/generador-qr-whatsapp/` por la dirección
-real de tu web en estos archivos: `index.html`, `lib/manifest.js`, `robots.txt` y
-`sitemap.xml`. (Si usas dominio propio, pon tu dominio.)
+Busca y reemplaza `https://TU-USUARIO.github.io/TU-REPOSITORIO/` por la dirección
+real de tu web en estos archivos: `index.html`, `en.html`, `lib/manifest.js`,
+`robots.txt` y `sitemap.xml`. (Si usas dominio propio, pon tu dominio.)
+
+## Sistema bilingüe (español / inglés)
+
+- Cada idioma tiene su propia dirección: `/` en español y `/en.html` en inglés, con
+  las etiquetas `hreflang` que le indican a Google cuál mostrar a cada público.
+- El botón **ES / EN** de la cabecera cambia el idioma al instante, sin recargar, y
+  recuerda la elección del visitante.
+- Si el navegador del visitante está en inglés, la página principal se muestra en
+  inglés automáticamente (los robots de Google siempre ven cada página en su idioma).
+- **Para cambiar un texto:** edítalo en `lib/i18n.js` (en `es` y en `en`) y ejecuta
+  `python tools/generar-idiomas.py`. Así el texto queda escrito también dentro del
+  HTML de las dos páginas, que es lo que lee Google.
 
 ## Publicar en GitHub Pages (gratis)
 
@@ -59,7 +74,7 @@ Si la ventana emergente resulta molesta, en `lib/manifest.js` puedes poner
 
 ## Cada vez que cambies algo
 
-Sube el número `?v=20261001` (en `index.html`) a la fecha del día para que los
+Sube el número `?v=20261002` (en `index.html`; luego regenera `en.html`) a la fecha del día para que los
 visitantes vean la versión nueva al instante.
 
 ## El icono del centro del QR

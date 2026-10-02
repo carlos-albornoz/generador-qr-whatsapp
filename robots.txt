@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # TODO: cambia la dirección por la de tu web
-Sitemap: https://carlos-albornoz.github.io/generador-qr-whatsapp/sitemap.xml
+Sitemap: https://TU-USUARIO.github.io/TU-REPOSITORIO/sitemap.xml

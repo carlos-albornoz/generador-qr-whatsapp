@@ -50,7 +50,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .site-header__in { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
 .logo { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--deep); font-weight: 700; font-size: 1.15rem; }
 .logo b { color: var(--brand); }
+.site-header__right { display: flex; align-items: center; gap: 22px; }
 .site-nav { display: flex; gap: 22px; }
+/* Selector de idioma ES / EN */
+.lang-switch { display: inline-flex; padding: 3px; gap: 2px; background: #eef3f1; border: 1px solid var(--line); border-radius: 999px; }
+.lang-switch a {
+  min-width: 38px; padding: 5px 10px; border-radius: 999px; text-align: center; text-decoration: none;
+  font-size: .8rem; font-weight: 700; letter-spacing: .04em; color: var(--muted); transition: background .15s, color .15s;
+}
+.lang-switch a:hover { color: var(--deep); }
+.lang-switch a[aria-current="true"] { background: #fff; color: var(--brand-dark); box-shadow: 0 1px 3px rgba(16, 40, 34, .15); }
 .site-nav a { color: var(--muted); text-decoration: none; font-size: .94rem; font-weight: 500; }
 .site-nav a:hover { color: var(--brand); }
 

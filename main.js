@@ -9,6 +9,9 @@
   var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function $(id) { return document.getElementById(id); }
+  // Textos traducidos (lib/i18n.js). Si faltara el diccionario, se muestra la clave.
+  function t(key, vars) { return B.t ? B.t(key, vars) : key; }
+  function lang() { return B.i18n ? B.i18n.lang() : "es"; }
   function safe(name, fn) {
     try { fn(); } catch (e) { console.error("[EnlaceChat] " + name, e); }
   }
@@ -71,7 +74,19 @@
   var countries = B.countries || [];
   var byIso = {};
   countries.forEach(function (c) { byIso[c.iso] = c; });
-  var sorted = countries.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "es"); });
+  var regionNames = {};
+  function cName(c) {
+    var l = lang();
+    if (l === "es") return c.name;
+    try {
+      if (!regionNames[l]) regionNames[l] = new Intl.DisplayNames([l], { type: "region" });
+      return regionNames[l].of(c.iso) || c.name;
+    } catch (e) { return c.name; }
+  }
+  function sortedCountries() {
+    var l = lang();
+    return countries.slice().sort(function (a, b) { return cName(a).localeCompare(cName(b), l); });
+  }
 
   function norm(s) {
     return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -98,18 +113,21 @@
       function row(c) {
         var sel = state.country && state.country.iso === c.iso;
         return '<li role="option" data-iso="' + c.iso + '" aria-selected="' + sel + '">' +
-          '<span class="f">' + flagHTML(c.iso) + '</span><span class="n">' + esc(c.name) + '</span><span class="d">' + fmtDial(c.dial) + "</span></li>";
+          '<span class="f">' + flagHTML(c.iso) + '</span><span class="n">' + esc(cName(c)) + '</span><span class="d">' + fmtDial(c.dial) + "</span></li>";
       }
+      var sorted = sortedCountries();
       if (!nq) {
-        (B.pinnedCountries || []).forEach(function (iso) { if (byIso[iso]) html += row(byIso[iso]); });
+        var pinned = (B.pinnedCountries || {})[lang()] || (B.pinnedCountries || {}).es || [];
+        pinned.forEach(function (iso) { if (byIso[iso]) html += row(byIso[iso]); });
         html += '<li class="sep" role="separator" aria-hidden="true"></li>';
         sorted.forEach(function (c) { html += row(c); });
       } else {
         var hits = sorted.filter(function (c) {
-          return norm(c.name).indexOf(nq) > -1 || c.iso.toLowerCase() === nq || c.dial.indexOf(nq) === 0;
+          return norm(cName(c)).indexOf(nq) > -1 || norm(c.name).indexOf(nq) > -1 ||
+            c.iso.toLowerCase() === nq || c.dial.indexOf(nq) === 0;
         });
         hits.forEach(function (c) { html += row(c); });
-        if (!hits.length) html = '<li class="none">No encontramos ese país</li>';
+        if (!hits.length) html = '<li class="none">' + esc(t("js.noCountry")) + "</li>";
       }
       list.innerHTML = html;
       active = -1;
@@ -159,6 +177,8 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) close(true); });
 
     selectCountry(guessCountry(), true);
+    // Al cambiar de idioma con el desplegable abierto, se vuelve a pintar traducido
+    document.addEventListener("langchange", function () { if (!panel.hidden) render(search.value); });
   }
 
   function selectCountry(iso, silent) {
@@ -174,8 +194,13 @@
     state.country = c;
     $("ccFlag").innerHTML = flagHTML(c.iso);
     $("ccDial").textContent = fmtDial(c.dial);
-    $("ccBtn").setAttribute("aria-label", "País: " + c.name + " (" + fmtDial(c.dial) + "). Cambiar país");
+    updateCcAria();
     if (!silent) onInput();
+  }
+
+  function updateCcAria() {
+    var c = state.country;
+    if (c) $("ccBtn").setAttribute("aria-label", t("js.ccAria", { name: cName(c), dial: fmtDial(c.dial) }));
   }
 
   function detectCountry(digits) {
@@ -202,7 +227,7 @@
     if (/^(\+|00)/.test(raw)) {
       if (/^00/.test(raw)) digits = digits.replace(/^00/, "");
       var det = detectCountry(digits);
-      if (det && det !== state.country) { selectCountry(det.iso, true); notes.push("País detectado: " + det.name + "."); }
+      if (det && det !== state.country) { selectCountry(det.iso, true); notes.push(t("js.detected", { name: cName(det) })); }
       c = state.country;
       full = digits;
       local = det ? digits.slice(det.dial.length) : digits;
@@ -210,25 +235,25 @@
       local = digits;
       if (/^0/.test(local) && local.length > 1 && ["IT", "SM"].indexOf(c.iso) < 0) {
         local = local.replace(/^0+/, "");
-        notes.push("Hemos quitado el 0 inicial: no se usa en formato internacional.");
+        notes.push(t("js.zero"));
       }
       full = c.dial + local;
       if (local.indexOf(c.dial) === 0 && full.length > 13) {
-        notes.push("¿Has escrito el prefijo " + fmtDial(c.dial) + " dos veces? No hace falta incluirlo en el número.");
+        notes.push(t("js.double", { dial: fmtDial(c.dial) }));
       }
     }
     if (c.iso === "AR" && local && local.charAt(0) !== "9") {
-      notes.push("Móviles de Argentina: añade un 9 antes del código de área y quita el 15 (ej.: 9 11 2345 6789).");
+      notes.push(t("js.ar"));
     }
     if (c.iso === "MX" && local.length === 11 && local.charAt(0) === "1") {
-      notes.push("En México ya no hace falta el 1 después del +52: usa solo los 10 dígitos.");
+      notes.push(t("js.mx"));
     }
     var valid = local.length >= 4 && full.length >= 8 && full.length <= 15;
     return { empty: false, valid: valid, full: full, local: local, notes: notes };
   }
 
   function prettyNumber(p) {
-    if (!p || p.empty) return "Tu número";
+    if (!p || p.empty) return t("js.yourNumber");
     var c = state.country, d = p.local || "", out = [];
     if (d.length === 8) out = [d.slice(0, 4), d.slice(4)];
     else {
@@ -276,7 +301,7 @@
       hint.textContent = p.notes.join(" ");
       hint.classList.add("is-alert");
     } else {
-      hint.textContent = "Escribe tu número sin el prefijo del país. Si pegas uno con «+», detectamos el país solos.";
+      hint.textContent = t("tool.phoneHint");
       hint.classList.remove("is-alert");
     }
   }
@@ -340,8 +365,8 @@
     var err = $("formError");
     if (!p.valid) {
       err.textContent = p.empty
-        ? "Escribe tu número de WhatsApp para generar el enlace."
-        : "Ese número no parece válido. Revisa el país y que tenga todos los dígitos (sin el prefijo).";
+        ? t("js.errEmpty")
+        : t("js.errInvalid");
       err.hidden = false;
       $("phone").classList.add("is-invalid");
       $("phone").focus();
@@ -352,9 +377,10 @@
     state.generated = true;
     $("resultCard").hidden = false;
     updateResult(p, true);
-    var gb = $("generateBtn");
-    gb.lastChild.textContent = " Enlace y QR actualizados ✓";
-    setTimeout(function () { gb.lastChild.textContent = " Generar enlace y QR"; }, 1800);
+    var gl = $("genLabel");
+    gl.textContent = t("js.genDone");
+    clearTimeout(generate.timer);
+    generate.timer = setTimeout(function () { gl.textContent = t("tool.generate"); }, 1800);
     if (first || window.innerWidth < 1000) {
       $("resultCard").scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
     }
@@ -365,7 +391,7 @@
     state.link = buildLink(p);
     $("linkOut").value = state.link;
     $("testLink").href = state.link;
-    $("linkLen").textContent = "Enlace oficial wa.me · " + state.link.length + " caracteres";
+    $("linkLen").textContent = t("js.linkMeta", { n: state.link.length });
     immediate ? renderQR() : renderQRSoon();
   }
 
@@ -396,15 +422,15 @@
       var sc = currentScene();
       box.innerHTML = B.qrRender.toSVG(sc);
       var v = sc.version, mods = v * 4 + 17, txt;
-      if (v <= 6) txt = "Densidad baja: ideal incluso para tarjetas pequeñas.";
-      else if (v <= 12) txt = "Densidad media: imprímelo a 2,5 cm o más.";
-      else txt = "Densidad alta (mensaje largo): imprímelo a 3,5 cm o más, o acorta el mensaje.";
-      if (sc.logoDropped) txt = "Mensaje muy largo: hemos quitado la imagen central para que el código quepa. " + txt;
-      $("qrInfo").textContent = txt + " (" + mods + "×" + mods + " módulos)";
-      box.setAttribute("aria-label", "Código QR de " + state.link);
+      if (v <= 6) txt = t("js.densLow");
+      else if (v <= 12) txt = t("js.densMid");
+      else txt = t("js.densHigh");
+      if (sc.logoDropped) txt = t("js.logoDropped") + " " + txt;
+      $("qrInfo").textContent = txt + " " + t("js.modules", { n: mods });
+      box.setAttribute("aria-label", t("js.qrAria", { link: state.link }));
     } catch (e) {
       box.innerHTML = "";
-      $("qrInfo").textContent = "El mensaje es demasiado largo para un código QR. Acórtalo un poco.";
+      $("qrInfo").textContent = t("js.tooLong");
       console.error("[EnlaceChat] QR", e);
     }
     checkContrast();
@@ -420,10 +446,10 @@
     var lf = lum(state.fg), lb = lum(state.bg), w = $("contrastWarn");
     var ratio = (Math.max(lf, lb) + 0.05) / (Math.min(lf, lb) + 0.05);
     if (lf > lb) {
-      w.textContent = "⚠ Colores invertidos: muchos lectores necesitan el código oscuro sobre fondo claro. Prueba a intercambiarlos.";
+      w.textContent = t("js.inverted");
       w.hidden = false;
     } else if (ratio < 3.5) {
-      w.textContent = "⚠ Contraste bajo (" + ratio.toFixed(1) + ":1). Oscurece el color frontal o aclara el fondo para que se escanee bien.";
+      w.textContent = t("js.lowContrast", { ratio: ratio.toFixed(1).replace(".", t("js.decimal")) });
       w.hidden = false;
     } else {
       w.hidden = true;
@@ -474,6 +500,10 @@
     });
   }
 
+  function updateLogoHint() {
+    $("logoHint").textContent = state.logoName ? t("js.logoAdded", { name: state.logoName }) : t("tool.logoHint");
+  }
+
   function initQRControls() {
     $("fgColor").addEventListener("input", function () { setColors(this.value.toLowerCase(), null); });
     $("bgColor").addEventListener("input", function () { setColors(null, this.value.toLowerCase()); });
@@ -509,10 +539,11 @@
         state.customLogo = logo;
         state.logoMode = "custom";
         setSeg("logoSeg", "custom");
-        $("logoHint").textContent = "Logo «" + f.name + "» añadido. Pulsa «Mi logo…» otra vez para cambiarlo.";
+        state.logoName = f.name;
+        updateLogoHint();
         renderQR();
       }).catch(function (err) {
-        toast(err.message === "TOO_BIG" ? "La imagen supera 5 MB. Prueba con una más ligera." : "No hemos podido leer esa imagen. Usa PNG, JPG o SVG.");
+        toast(err.message === "TOO_BIG" ? t("js.tooBig") : t("js.readFail"));
       });
     });
 
@@ -538,34 +569,35 @@
     var px = parseInt($("pngSize").value, 10) || 1024, btn = $("dlPng");
     btn.disabled = true;
     var sc;
-    try { sc = currentScene(); } catch (e) { btn.disabled = false; toast("No se pudo crear el QR: acorta el mensaje."); return; }
+    try { sc = currentScene(); } catch (e) { btn.disabled = false; toast(t("js.qrFail")); return; }
     B.qrRender.toPNG(sc, px).then(function (blob) {
       saveBlob(blob, fileBase() + ".png");
-      toast("Descargando PNG de " + px + " px");
-      afterAction("Tu código QR en PNG se está descargando.");
+      toast(t("js.pngToast", { px: px }));
+      afterAction(t("js.pngPopup"));
     }).catch(function () {
-      toast("No hemos podido crear el PNG. Prueba con el SVG o con otro logo.");
+      toast(t("js.pngFail"));
     }).then(function () { btn.disabled = false; });
   }
 
   function downloadSVG() {
     if (!state.link) return;
     var sc;
-    try { sc = currentScene(); } catch (e) { toast("No se pudo crear el QR: acorta el mensaje."); return; }
+    try { sc = currentScene(); } catch (e) { toast(t("js.qrFail")); return; }
     var svg = '<?xml version="1.0" encoding="UTF-8"?>\n' + B.qrRender.toSVG(sc, 1024);
     saveBlob(new Blob([svg], { type: "image/svg+xml" }), fileBase() + ".svg");
-    toast("Descargando SVG vectorial");
-    afterAction("Tu código QR en SVG se está descargando.");
+    toast(t("js.svgToast"));
+    afterAction(t("js.svgPopup"));
   }
 
   function copyLink() {
     if (!state.link) return;
     var done = function () {
       var lbl = $("copyLabel"), btn = $("copyBtn");
-      lbl.textContent = "✓ Copiado";
+      lbl.textContent = t("js.copied");
       btn.classList.add("is-done");
-      setTimeout(function () { lbl.textContent = "Copiar enlace"; btn.classList.remove("is-done"); }, 2000);
-      afterAction("Enlace copiado al portapapeles.");
+      clearTimeout(copyLink.timer);
+      copyLink.timer = setTimeout(function () { lbl.textContent = t("tool.copy"); btn.classList.remove("is-done"); }, 2000);
+      afterAction(t("js.copyPopup"));
     };
     var fallback = function () {
       var inp = $("linkOut");
@@ -627,7 +659,7 @@
   function boot() {
     if (!B.qr || !B.qrRender || !countries.length) {
       var e = $("formError");
-      e.textContent = "No se ha podido cargar la herramienta. Recarga la página.";
+      e.textContent = t("js.loadFail");
       e.hidden = false;
       return;
     }
@@ -636,6 +668,23 @@
     safe("qrControls", initQRControls);
     safe("popup", initPopup);
     safe("preview", function () { renderPreview(parsePhone()); });
+    document.addEventListener("langchange", function () { safe("langchange", onLangChange); });
+  }
+
+  // Tras traducir la página (lib/i18n.js), se rehacen los textos generados aquí
+  function onLangChange() {
+    updateCcAria();
+    updateLogoHint();
+    var err = $("formError");
+    if (!err.hidden) {
+      var p0 = parsePhone();
+      err.textContent = p0.empty ? t("js.errEmpty") : t("js.errInvalid");
+    }
+    onInput();                 // pista del número, vista previa y enlace
+    if (state.generated) {
+      $("linkLen").textContent = t("js.linkMeta", { n: state.link.length });
+      renderQR();              // densidad, aviso de contraste, etiqueta del QR
+    }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
